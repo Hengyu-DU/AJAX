@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>首页</h1>
+    <button>获取数据</button>
+    <script>
+        // document.querySelector("button").onclick = function () {
+            //     let xhr = new XMLHttpRequest()
+            //     xhr.open("get","/data") //.open(请求方法，url)
+            //     xhr.send() // 发送请求
+            //     xhr.onreadystatechange = function(){
+            //         if(xhr.readyState === 4 && xhr.status === 200){
+            //             alert(xhr.responseText)
+            //         }
+            //     }
+
+        //     myajax("get", "/data", function (res) {
+        //         alert(res)
+        //     })
+        // }
+
+
+        // 自己封装Ajax可以用回调函数，因为异步操作？？
+        // 建议不适应回调函数处理异步问题
+        // 建议使用promise对象
+
+        // function myajax(method, url, next){
+        //     let xhr = new XMLHttpRequest()
+        //     xhr.open(method,url) //.open(请求方法，url)
+        //     xhr.send() // 发送请求
+        //     xhr.onreadystatechange = function(){
+        //         if(xhr.readyState === 4 && xhr.status === 200){
+        //             next(xhr.responseText)
+        //         }
+        //     }
+        // }
+
+
+        // promise
+        document.querySelector("button").onclick = function () {
+            myajax("get", "/data").then( res => {
+                alert(res)
+            })
+        }
+
+
+        function myajax(method, url) {
+            return new Promise(function(resolve) {
+                let xhr = new XMLHttpRequest()
+                xhr.open(method, url) //.open(请求方法，url)
+                xhr.send() // 发送请求
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        resolve(xhr.responseText)
+                    }
+                }
+
+            })
+
+        }
+    </script>
+</body>
+
+</html>
