@@ -1,0 +1,22 @@
+{
+  "name": "ajax",
+  "version": "1.0.0",
+  "description": "My AJAX learning files folder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hengyu-DU/AJAX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hengyu-DU/AJAX/issues"
+  },
+  "homepage": "https://github.com/Hengyu-DU/AJAX#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
