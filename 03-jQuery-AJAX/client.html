@@ -19,8 +19,52 @@
     <button type="button" class="btn btn-info">通用型方法ajax</button>
   </div>
   <script type="text/javascript">
-    $('button').eq(0).click(function(){
-      $.get('')
+    $('button').eq(0).click(function () {
+      $.get('http://127.0.0.1:8000/jquery-server', // 1,地址
+        { a: 100, b: 200 }, // 2,参数
+        function (data) { // 3.回调函数，设置响应体
+          console.log(data);
+        },
+        'json' // 4.响应体类型，json格式数据
+      )
+    })
+
+    $('button').eq(1).click(function () {
+      $.post('http://127.0.0.1:8000/jquery-server', // 1,地址
+        { a: 100, b: 200 }, // 2,参数
+        function (data) { // 3.回调函数，设置响应体
+          console.log(data);
+        },
+        'json' // 4.响应体类型，json格式数据
+      )
+    })
+
+    $('button').eq(2).click(function(){
+      $.ajax({
+        // url 
+        url: 'http://127.0.0.1:8000/jquery-server',
+        // 参数
+        data:{a:100, b:200},
+        // 请求类型
+        type:'GET',
+        // 响应体结果设置
+        dataType:'json',
+        // 成功的回调
+        success: function(data){
+          console.log(data);
+        },
+        // 超时的时间
+        timeout:2000,
+        // 失败的回调
+        error:function(){
+          console.log('出错了！');
+        },
+        // 头信息的设置
+        headers:{
+          c:200,
+          d:500
+        }
+      })
     })
   </script>
 </body>
