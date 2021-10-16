@@ -508,6 +508,9 @@ btns[2].onclick = function () {
 
 ------
 ## 第六章 fetch函数发送AJAX请求
+需要了解Promise的知识
+如果用await 必须包在 async函数中
+
 ```js
 btn.onclick = function(){
       fetch('http://127.0.0.1:8000/fetch-server?vip=10',{

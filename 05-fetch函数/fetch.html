@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>fetch 发送 AJAX请求</title>
 </head>
+
 <body>
   <button>AJAX请求</button>
   <script>
     const btn = document.querySelector('button')
 
-    btn.onclick = function(){
-      fetch('http://127.0.0.1:8000/fetch-server?vip=10',{
-        // 请求方法
-        method:'POST',
-        // 请求头
-        headers:{
-          name:'atguigu'
-        },
-        // 请求体
-        body: 'username=admin&password=admin'
-      }).then(response => {
-        // console.log(response)
-        // return response.text()  // 变成字符串
-        return response.json()  // 变成对象
-      }).then(response=>{
-        console.log(response);
-      })
-    }
+    btn.onclick = async () => {
+      //————————优化前：
+      // fetch('http://127.0.0.1:8000/fetch-server?vip=10', {
+      //   // 请求方法
+      //   method: 'POST',
+      //   // 请求头
+      //   headers: {
+      //     name: 'atguigu'
+      //   },
+      //   // 请求体
+      //   body: 'username=admin&password=admin'
+      // }).then(
+      //   response => {
+      //     console.log('联系服务器成功了！等待返回结果');
+      //     return response.json()  // .json方法：Promise对象
+      //     // return response.text()  // .text方法：变成字符串
+      //   }
+      //   /* error => { 
+      //     console.log('联系服务器失败了', error);
+      //     return new Promise(()=>{})
+      //   } */
+
+      // ).then(
+      //   response => {console.log('获取数据成功了', response);},
+      //   /* error => {console.log('获取数据失败了', error);}) */
+      // ).catch(
+      //   (error)=>{console.log(error)}
+      // )
+
+
+      //——————优化后：
+      try {
+        const response = await fetch('http://127.0.0.1:8000/fetch-server?vip=10')
+        const data = await response.json()
+        console.log(data);
+      } catch (error) {
+        console.log('请求出错', error);
+      }
+      }
   </script>
 </body>
+
 </html>
